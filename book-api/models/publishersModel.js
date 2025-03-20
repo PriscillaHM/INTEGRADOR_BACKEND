@@ -54,24 +54,30 @@ const addPublisher = (publisher) => {
         throw new Error('Publisher must have a name and country');
     }
 
-    // Leemos las editoriales existentes
-    const publishers = readPublishersFromFile();
+    try{
+        // Leemos las editoriales existentes
+        const publishers = readPublishersFromFile();
+    
+        // Generamos un ID único para la nueva editorial
+        const newPublisher = {
+            id: uuid4(),
+            name: publisher.name,
+            country: publisher.country
+        };
+    
+        // Agregamos la nueva editorial a la lista
+        publishers.push(newPublisher);
+    
+        // Escribimos la lista actualizada al archivo
+        writePublishersToFile(publishers);
+    
+        // Devolvemos la editorial agregada (puede ser útil para el controlador)
+        return newPublisher;
+    } catch(error) {
+        console.error('Error writing publishers file:', error.message);
+        return 'Error saving publishers data'
+    }
 
-    // Generamos un ID único para la nueva editorial
-    const newPublisher = {
-        id: uuid4(),
-        name: publisher.name,
-        country: publisher.country
-    };
-
-    // Agregamos la nueva editorial a la lista
-    publishers.push(newPublisher);
-
-    // Escribimos la lista actualizada al archivo
-    writePublishersToFile(publishers);
-
-    // Devolvemos la editorial agregada (puede ser útil para el controlador)
-    return newPublisher;
 };
 
 // Exportamos las funciones para ser utilizadas en otros módulos
