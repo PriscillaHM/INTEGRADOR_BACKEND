@@ -35,7 +35,7 @@ const writeBooksToFile = (books) => {
 };
 
 /**
- * Obtiene la lista de todos los autores almacenados.
+ * Obtiene la lista de todos los libros almacenados.
  * @returns {Array} - Lista de libros
  */
 const getBooks = () => {
@@ -43,11 +43,10 @@ const getBooks = () => {
     return readBooksFromFile(); 
 };
 
-// Función para agregar un nuevo libro
 /**
  * Agrega un nuevo libros a la lista y lo gurada en el archivo
  * @param {Object} book - Objeto con los datos del libros
- * @returns {Object} El lubros agregadp con su ID
+ * @returns {Object} El libro agregado con su ID
  */
 const addBook = (book) => {
     // Validamos que el libro tenga los datos requeridos
