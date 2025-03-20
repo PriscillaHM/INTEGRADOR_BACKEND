@@ -8,5 +8,10 @@
     "id": 2,
     "name": "Editorial Sudamericana",
     "country": "Argentina"
+  },
+  {
+    "id": "128b2ada-8766-4fc1-8ddd-bb2de9f10a97",
+    "name": "editorial",
+    "country": "USA"
   }
 ]
