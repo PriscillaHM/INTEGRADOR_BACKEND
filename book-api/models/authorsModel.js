@@ -9,7 +9,6 @@ const { v4: uuid4 } = require('uuid');
 // Definimos la ruta al archivo donde se almacenan los autores
 const authorsFilePath = path.join(__dirname, '../data/authors.json'); // Ruta al archivo authors.json
 
-// Función para leer el archivo y parsearlo
 /**
  * Lee el archivo de autores y lo convierte a un objeto JavaScript.
  * @returns {Array} Lista de autores almacenados en el archivo.
@@ -27,7 +26,6 @@ const readAuthorsFromFile = () => {
     }
 };
 
-// Función para escribir los autores al archivo
 /**
  * Escribe la lista de autores en el archivo JSON.
  * @param {Array} authors - Lista de autores actualizada.
