@@ -23,23 +23,13 @@ function promptForCommand() {
 
         // Después de enviar el comando, esperamos la respuesta del servidor
         //El método .once() de Node.js lo usamos cuando queremos que un evento se ejecute solo una vez. 
+        // Esperamos una única respuesta del servidor
         client.once('data', (data) => {
             console.log('Server says: ' + data.toString());
             promptForCommand(); // Volvemos a preguntar por un nuevo comando
         });
     });
 }
-client.on('connect', ()=>{
-    console.log('satisfactory connection ');
-    rl.question('write a command (for example: "GET BOOK" or "ADD BOOK {"id": 1 ,"title": "El Quijote","author_id": 1, "publisher_id": 1, "year": 1605,"genre": "Novela" } ")', (command)=>{
-        client.write(command); //enviamos el comando al server
-    });    
-});
-
-client.on('data', (data)=>{
-    console.log('Server says '+data.toString());
-    promptUserForCommand(); // Volvemos a preguntar por un nuevo comando        
-})
 
 // Evento para manejar el cierre de la conexión
 

@@ -22,6 +22,7 @@ function isjson(str) {
 const server = net.createServer();
 
 server.on('connection', (socket) => {
+    console.log('client connected');
     socket.on('data', (data) => {
         const command = data.toString().trim();
 
@@ -107,7 +108,7 @@ server.on('connection', (socket) => {
 });
 
 // Puerto a escuchar
-server.listen(8080, () => {
-    console.log('Server listening on port ', server.address().port);
-});
 
+server.listen(8080, () => {
+    console.log('Servidor escuchando en el puerto 8080');
+})
