@@ -1,35 +1,44 @@
-//En el archivo server.js, implementa el servidor TCP utilizando el módulo NET.
-//Configura el servidor para escuchar conexiones en el puerto 8080 y para recibir comandos de los clientes.
-//Asegúrate de manejar correctamente múltiples conexiones y de devolver respuestas claras a los clientes.
-//Implementa el manejo de errores para asegurar que el servidor responda de manera adecuada a diferentes situaciones.
+/**
+ * Servidor TCP implementado con el módulo 'net' de Node.js.
+ * - Escucha conexiones en el puerto 8080.
+ * - Recibe comandos de clientes y devuelve respuestas adecuadas.
+ * - Maneja múltiples conexiones simultáneamente.
+ * - Implementa manejo de errores para asegurar una respuesta robusta.
+ */
 
-
+//Importamos el modulo net
 const net = require('net');
 
-// Aca se importan los controladores
+// Importamos los controladores para gestionar libros, editoriales y autores
 const booksController = require('./controllers/booksController');
 const publishersController = require('./controllers/publishersController');
 const authorsController = require('./controllers/authorsController');
 
-// Importamos la funcion v4 del paquete uuid
+// Importamos la función v4 de uuid para generar IDs únicos
 const { v4: uuid4 } = require('uuid');
 
-// Validamos si una cadena es o no JSON
+/**
+ * Verifica si una cadena de texto tiene formato JSON válido.
+ * @param {string} str - Cadena a validar.
+ * @returns {boolean} true si la cadena tiene formato JSON, false en caso contrario.
+ */
 function isjson(str) {
     return str.startsWith('{') && str.endsWith('}');
 }
 
+//Creacion del servidor TCP
 const server = net.createServer();
 
+// Evento que maneja nuevas conexiones de clientes
 server.on('connection', (socket) => {
     console.log('client connected');
     socket.on('data', (data) => {
         const command = data.toString().trim();
 
-        // Comando para obtener libros
+        // Manejo de comandos para obtener y agregar libros
         if (command === 'GET BOOKS') {
             const response = booksController.getBooks();
-            console.log('Sending response:', response);
+            console.log('Sending response:\n', response);
             socket.write(JSON.stringify(response, null, 2)); // Enviar como JSON
         }
         // Comando para agregar un libro
@@ -49,10 +58,10 @@ server.on('connection', (socket) => {
             }
         }
 
-        // Comando para obtener autores
+        // Manejo de comandos para obtener y agregar autores
         else if (command === 'GET AUTHORS') {
             const response = authorsController.getAuthors();
-            console.log('Sending response:', response);
+            console.log('Sending response:\n', response);
             socket.write(JSON.stringify(response, null, 2));
         }
         // Comando para agregar un autor
@@ -72,10 +81,10 @@ server.on('connection', (socket) => {
             }
         }
 
-        // Comando para obtener editoriales
+        // Manejo de comandos para obtener y agregar editoriales
         else if (command === 'GET PUBLISHERS') {
             const response = publishersController.getPublishers();
-            console.log('Sending response:', response);
+            console.log('Sending response:\n', response);
             socket.write(JSON.stringify(response, null, 2));
         }
         // Comando para agregar una editorial
@@ -96,19 +105,19 @@ server.on('connection', (socket) => {
             }
         }
 
-        // Si el comando no se reconoce
+         // Respuesta para comandos no reconocidos
         else {
             socket.write('Unrecognized command');
         }
     });
 
+     // Manejo del evento de finalización de la conexión
     socket.on('end', () => {
         console.log('Communication has ended');
     });
 });
 
-// Puerto a escuchar
-
+// Configuración del servidor para escuchar en el puerto 8080
 server.listen(8080, () => {
     console.log('Servidor escuchando en el puerto 8080');
 })
