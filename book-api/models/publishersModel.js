@@ -10,27 +10,47 @@ const { v4: uuid4 } = require('uuid');
 const publishersFilePath = path.join(__dirname, '../data/publishers.json'); // Ruta al archivo publishers.json
 
 // Función para leer el archivo y parsearlo
+/**
+ * Lee el archivo de editoriales y lo convierte a un objecto js
+ * @returns {Array} Lista de editoriales almacenadas en el archivo
+ */
 const readPublishersFromFile = () => {
     try {
+        // Leemos el contenido del archivo
         const data = fs.readFileSync(publishersFilePath, 'utf8');
-        return JSON.parse(data); // Parseamos el JSON a un objeto JavaScript
+
+        // Parseamos el JSON a un objeto JavaScript
+        return JSON.parse(data); 
     } catch (error) {
-        return []; // Si no existe el archivo o hay un error, devolvemos un array vacío
+        // Si no existe el archivo o hay un error, devolvemos un array vacío
+        return []; 
     }
 };
 
-// Función para escribir las editoriales al archivo
+/**
+ * Escribe la lista de editoriales en el archivo JSON.
+ * @param {Array} publishers  - Lista de editoriales actualizada
+ */
 const writePublishersToFile = (publishers) => {
+    // Guardamos la lista de autores en formato JSON con indentación de 2 espacios
     fs.writeFileSync(publishersFilePath, JSON.stringify(publishers, null, 2), 'utf8');
 };
 
-// Función para obtener la lista de editoriales
+/**
+ * Obtiene la lista de todas las editoriales almacenados.
+ * @returns {Array} - Lista de editoriales
+ */
 const getPublishers = () => {
     return readPublishersFromFile(); // Leemos las editoriales desde el archivo
 };
 
-// Función para agregar una nueva editorial
+/**
+ * Agrega una nueva editorial a la lista y la guarda en el archivo
+ * @param {Object} publisher - Objecto con los datos del la editorial a agregar
+ * @returns {Object} La editorial agregada
+ */
 const addPublisher = (publisher) => {
+    // Validamos que la editorial tenga los datos requeridos
     if (!publisher.name || !publisher.country) {
         throw new Error('Publisher must have a name and country');
     }
@@ -55,4 +75,5 @@ const addPublisher = (publisher) => {
     return newPublisher;
 };
 
+// Exportamos las funciones para ser utilizadas en otros módulos
 module.exports = { getPublishers, addPublisher };
