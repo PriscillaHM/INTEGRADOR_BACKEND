@@ -1,13 +1,12 @@
 [
-    {
-      "id": 1,
-      "name": "Miguel de Cervantes",
-      "country": "España"
-    },
-    {
-      "id": 2,
-      "name": "Gabriel García Márquez",
-      "country": "Colombia"
-    }
+  {
+    "id": 1,
+    "name": "Miguel de Cervantes",
+    "country": "España"
+  },
+  {
+    "id": 2,
+    "name": "Gabriel García Márquez",
+    "country": "Colombia"
+  }
 ]
-  

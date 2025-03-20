@@ -14,13 +14,5 @@
     "publisher_id": 2,
     "year": 1967,
     "genre": "Realismo mágico"
-  },
-  {
-    "id": "291ace24-473c-4e9e-9233-af857d18dea7",
-    "title": "La isla",
-    "author_id": 3,
-    "publisher_id": 3,
-    "year": 2015,
-    "genre": "Novela"
   }
 ]
