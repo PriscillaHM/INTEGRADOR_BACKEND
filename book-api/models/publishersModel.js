@@ -9,7 +9,6 @@ const { v4: uuid4 } = require('uuid');
 // Definimos la ruta al archivo donde se almacenan las editoriales
 const publishersFilePath = path.join(__dirname, '../data/publishers.json'); // Ruta al archivo publishers.json
 
-// Función para leer el archivo y parsearlo
 /**
  * Lee el archivo de editoriales y lo convierte a un objecto js
  * @returns {Array} Lista de editoriales almacenadas en el archivo
