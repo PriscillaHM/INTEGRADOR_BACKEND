@@ -1,4 +1,3 @@
-// Formatea la respuesta de los libros para que sea legible
 /**
  * Formatea la lista de libros en un formato legible.
  * @param {Array} books - Lista de libros a formatear

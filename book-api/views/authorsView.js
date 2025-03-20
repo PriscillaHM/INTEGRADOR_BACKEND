@@ -1,4 +1,3 @@
-// Función que formatea la lista de autores en un formato legible
 /**
  * Formatea la lista de autores en un formato legible.
  * @param {Array} authors - Lista de autores a formatear.
