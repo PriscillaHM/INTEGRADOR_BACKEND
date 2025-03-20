@@ -73,7 +73,7 @@ En el cliente TCP, puedes ejecutar los siguientes comandos:
 
 - Obtener todos los autores: GET AUTHORS
 
-- Agregar un nuevo autor: ADD AUTHOR {"name": "Autor X", "nationality": "Argentina"}
+- Agregar un nuevo autor: ADD AUTHOR {"name": "Autor X", "country": "Argentina"}
 
 # Manejo de errores
 Si se ingresa un comando incorrecto, el cliente devolverá un mensaje de error, por ejemplo:
