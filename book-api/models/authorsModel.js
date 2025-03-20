@@ -54,24 +54,29 @@ const addAuthor = (author) => {
         throw new Error('Author must have name and country');
     }
 
-    // Leemos los autores existentes
-    const authors = readAuthorsFromFile();
+    try{
+        // Leemos los autores existentes
+        const authors = readAuthorsFromFile();
 
-    // Generamos un ID único para el nuevo autor
-    const newAuthor = {
-        id: uuid4(),
-        name: author.name,
-        country: author.country
-    };
+        // Generamos un ID único para el nuevo autor
+        const newAuthor = {
+            id: uuid4(),
+            name: author.name,
+            country: author.country
+        };
 
-    // Agregamos el nuevo autor a la lista
-    authors.push(newAuthor);
+         // Agregamos el nuevo autor a la lista
+        authors.push(newAuthor);
 
-    // Escribimos la lista actualizada al archivo
-    writeAuthorsToFile(authors);
+        // Escribimos la lista actualizada al archivo
+        writeAuthorsToFile(authors);
 
-    // Devolvemos el autor agregado 
-    return newAuthor;
+        // Devolvemos el autor agregado 
+        return newAuthor;
+    } catch(error) {
+        console.error('Error writing authors file:', error.message);
+        return 'Error saving author data';
+    }   
 };
 
 // Exportamos las funciones para ser utilizadas en otros módulos

@@ -54,27 +54,33 @@ const addBook = (book) => {
         throw new Error('Book must have title, author_id, publisher_id, year, and genre');
     }
 
-    // Leemos los libros existentes
-    const books = readBooksFromFile();
+    try{
+        // Leemos los libros existentes
+        const books = readBooksFromFile();
+    
+        // Generamos un ID único para el nuevo libro
+        const newBook = {
+            id: uuid4(),
+            title: book.title,
+            author_id: book.author_id,
+            publisher_id: book.publisher_id,
+            year: book.year,
+            genre: book.genre
+        };
+    
+        // Agregamos el nuevo libro a la lista
+        books.push(newBook);
+    
+        // Escribimos la lista actualizada al archivo
+        writeBooksToFile(books);
+    
+        // Devolvemos el libro agregado (puede ser útil para el controlador)
+        return newBook;
+    } catch(error){
+        console.error('Error writing books file:', error.message);
+        return 'Error saving books data'
+    }
 
-    // Generamos un ID único para el nuevo libro
-    const newBook = {
-        id: uuid4(),
-        title: book.title,
-        author_id: book.author_id,
-        publisher_id: book.publisher_id,
-        year: book.year,
-        genre: book.genre
-    };
-
-    // Agregamos el nuevo libro a la lista
-    books.push(newBook);
-
-    // Escribimos la lista actualizada al archivo
-    writeBooksToFile(books);
-
-    // Devolvemos el libro agregado (puede ser útil para el controlador)
-    return newBook;
 };
 
 // Exportamos las funciones para ser utilizadas en otros módulos
