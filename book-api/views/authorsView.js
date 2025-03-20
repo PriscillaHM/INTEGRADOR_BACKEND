@@ -1,14 +1,3 @@
-// Formatea la respuesta de los autores
-// const formatAuthorsResponse = (authors) => {
-//     if (authors.length === 0) return ' No authors available.';
-    
-//     return authors.map(author =>
-//         ` ${author.id} - ${author.name} (Country: ${author.country})`
-//     ).join('\n');
-// };
-
-// module.exports = { formatAuthorsResponse };
-
 // Función que formatea la lista de autores en un formato legible
 const formatAuthorsResponse = (authors) => {
     if (authors.length === 0) return 'No authors available.';
