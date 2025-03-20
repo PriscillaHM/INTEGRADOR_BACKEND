@@ -5,7 +5,7 @@
  * @returns {string} Cadena con la lista de libros formateada o un mensaje de no hay libros
  */
 const formatBooksResponse = (books) => {
-    if (books.length === 0) return ' No books v';
+    if (books.length === 0) return ' No books available';
 
     // Formateamos cada libro para mostrar ID, título, autor y editorial
     return books.map(book =>
