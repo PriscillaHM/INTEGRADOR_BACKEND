@@ -1,31 +1,56 @@
+//Importamos los modulos necesarios
+//Modulo fs para manejar archivos
 const fs = require('fs');
+//Modulo para manejar rutas de archivos
 const path = require('path');
-const { v4: uuid4 } = require('uuid'); // Para generar un ID único para cada libro
+// Para generar un ID único para cada autor
+const { v4: uuid4 } = require('uuid'); 
 
+// Definimos la ruta al archivo donde se almacenan los libros
 const booksFilePath = path.join(__dirname, '../data/books.json'); // Ruta al archivo books.json
 
-// Función para leer el archivo y parsearlo
+/**
+ * Lee el archivo de libros y lo convierte a un objeto JavaScript.
+ * @returns {Array} Lista de libros almacenadas en el archivo
+ */
 const readBooksFromFile = () => {
     try {
+        // Leemos el contenido del archivo
         const data = fs.readFileSync(booksFilePath, 'utf8');
-        return JSON.parse(data); // Parseamos el JSON a un objeto JavaScript
+
+        // Parseamos el JSON a un objeto JavaScript
+        return JSON.parse(data); 
     } catch (error) {
-        return []; // Si no existe el archivo o hay un error, devolvemos un array vacío
+        // Si hay un error (por ejemplo, el archivo no existe), retornamos un array vacío
+        return []; 
     }
 };
 
-// Función para escribir los libros al archivo
+/**
+ * Escribe la lista de libros en el archivo JSON.
+ * @param {Array} books - Lista de libros actualizada
+ */
 const writeBooksToFile = (books) => {
     fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2), 'utf8');
 };
 
-// Función para obtener la lista de libros
+/**
+ * Obtiene la lista de todos los autores almacenados.
+ * @returns {Array} - Lista de libros
+ */
 const getBooks = () => {
-    return readBooksFromFile(); // Leemos los libros desde el archivo
+    // Leemos los libros desde el archivo
+    return readBooksFromFile(); 
 };
 
 // Función para agregar un nuevo libro
+/**
+ * Agrega un nuevo libros a la lista y lo gurada en el archivo
+ * @param {Object} book - Objeto con los datos del libros
+ * @returns {Object} El lubros agregadp con su ID
+ */
 const addBook = (book) => {
+    // Validamos que el libro tenga los datos requeridos
     if (!book.title || !book.author_id || !book.publisher_id || !book.year || !book.genre) {
         throw new Error('Book must have title, author_id, publisher_id, year, and genre');
     }
@@ -53,5 +78,5 @@ const addBook = (book) => {
     return newBook;
 };
 
+// Exportamos las funciones para ser utilizadas en otros módulos
 module.exports = { getBooks, addBook };
-
