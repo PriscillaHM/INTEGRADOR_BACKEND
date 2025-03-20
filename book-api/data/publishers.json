@@ -1,13 +1,22 @@
 [
-    {
-      "id": 1,
-      "name": "Editorial Alfaguara",
-      "country": "España"
-    },
-    {
-      "id": 2,
-      "name": "Editorial Sudamericana",
-      "country": "Argentina"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "name": "Editorial Alfaguara",
+    "country": "España"
+  },
+  {
+    "id": 2,
+    "name": "Editorial Sudamericana",
+    "country": "Argentina"
+  },
+  {
+    "id": "3ebcd78b-c2cf-449d-8d92-66c7120a964f",
+    "name": "Catos",
+    "country": "Mexico"
+  },
+  {
+    "id": "232dc851-fd02-4b6b-ac27-24e24673469a",
+    "name": "Las rosas",
+    "country": "Mexico"
+  }
+]
